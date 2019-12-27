@@ -92,7 +92,7 @@ def main(table_data, flags):
     table_with_title = '.. table:: ' + flags.table_title + '\n\n' + as_rest_table(table_data, full=flags.is_full)
     print(table_with_title)
     pyperclip.copy(table_with_title)
-    # print('\n Copied to clipboard already, feel free to paste.')
+    print('\n Copied to clipboard already, feel free to paste.')
 
 
 if __name__ == "__main__":
