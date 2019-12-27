@@ -9,7 +9,7 @@ def as_rest_table(arg_data, full=False):
     >>> data = [('what', 'how', 'who'),
     ...         ('lorem', 'that is a long value', 3.1415),
     ...         ('ipsum', 89798, 0.2)]
-    >>> print as_rest_table(data, full=True)
+    >>> print(as_rest_table(data, full=True))
     +-------+----------------------+--------+
     | what  | how                  | who    |
     +=======+======================+========+
@@ -18,7 +18,7 @@ def as_rest_table(arg_data, full=False):
     | ipsum |                89798 |    0.2 |
     +-------+----------------------+--------+
 
-    >>> print as_rest_table(data)
+    >>> print(as_rest_table(data))
     =====  ====================  ======
     what   how                   who
     =====  ====================  ======
@@ -30,8 +30,9 @@ def as_rest_table(arg_data, full=False):
     arg_data = arg_data if arg_data else [['No Data']]
     table = []
     # max size of each column
-    sizes = map(max, zip(*[[len(str(elt)) for elt in member]
-                           for member in arg_data]))
+    zipped = zip(*[[len(str(elt)) for elt in member]
+                   for member in arg_data])
+    sizes = map(max, list(zipped))
     num_elts = len(sizes)
 
     if full:
@@ -89,9 +90,9 @@ def as_rest_table(arg_data, full=False):
 
 def main(table_data, flags):
     table_with_title = '.. table:: ' + flags.table_title + '\n\n' + as_rest_table(table_data, full=flags.is_full)
-    print table_with_title
+    print(table_with_title)
     pyperclip.copy(table_with_title)
-    # print '\n Copied to clipboard already, feel free to paste.'
+    # print('\n Copied to clipboard already, feel free to paste.')
 
 
 if __name__ == "__main__":
