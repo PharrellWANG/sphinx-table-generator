@@ -32,7 +32,7 @@ def as_rest_table(arg_data, full=False):
     # max size of each column
     zipped = zip(*[[len(str(elt)) for elt in member]
                    for member in arg_data])
-    sizes = map(max, list(zipped))
+    sizes = list(map(max, list(zipped)))
     num_elts = len(sizes)
 
     if full:
@@ -53,9 +53,9 @@ def as_rest_table(arg_data, full=False):
                                   end_of_line)
     # determine top/bottom borders
     if full:
-        to_separator = string.maketrans('| ', '+-')
+        to_separator = bytes.maketrans(b'| ', b'+-')
     else:
-        to_separator = string.maketrans('|', '+')
+        to_separator = bytes.maketrans(b'|', b'+')
     start_of_line = start_of_line.translate(to_separator)
     vertical_separator = vertical_separator.translate(to_separator)
     end_of_line = end_of_line.translate(to_separator)
@@ -63,7 +63,7 @@ def as_rest_table(arg_data, full=False):
                                    vertical_separator.join([x * line_marker for x in sizes]),
                                    end_of_line)
     # determine header separator
-    th_separator_tr = string.maketrans('-', '=')
+    th_separator_tr = bytes.maketrans(b'-', b'=')
     start_of_line = start_of_line.translate(th_separator_tr)
     line_marker = line_marker.translate(th_separator_tr)
     vertical_separator = vertical_separator.translate(th_separator_tr)
