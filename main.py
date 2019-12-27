@@ -53,6 +53,7 @@ def as_rest_table(arg_data, full=False):
     # determine top/bottom borders
     if full:
         to_separator = string.maketrans('| ', '+-')
+        # print to_separator
     else:
         to_separator = string.maketrans('|', '+')
     start_of_line = start_of_line.translate(to_separator)
